@@ -14,3 +14,4 @@ Base = declarative_base()
 # 4. Helper function to create all tables
 def create_tables():
     Base.metadata.create_all(engine)
+    

@@ -3,13 +3,33 @@ from db import SessionLocal
 from models import Cookie, User, Order, LineItem
 from sqlalchemy.orm import joinedload
 from sqlalchemy import select, func, cast
+from sqlalchemy import and_, or_, not_
 
 
 session = SessionLocal()
 
 print("=== Cookies ===")
 for cookie in session.query(Cookie).all():
-    print(cookie.cookie_id, cookie.cookie_name, cookie.cookie_sku, cookie.quantity, cookie.unit_cost)
+    print(cookie.cookie_id, cookie.cookie_name, cookie.cookie_sku, cookie.quantity, cookie.unit_cost) 
+
+cookies = session.execute( select(
+    Cookie.cookie_name,
+    (Cookie.quantity * Cookie.unit_cost).label("total_value")
+).where(Cookie.quantity > 50)
+)
+print("=== Cookies with total value ===")
+for cookie in cookies:
+        print(
+            cookie.cookie_name,
+            cookie.total_value
+        )
+
+s = select(Cookie).where(
+    and_(
+        Cookie.quantity > 23,
+        Cookie.unit_cost < 0.40
+   )
+)
 
 print("\n=== Users ===")
 for user in session.query(User).all():
@@ -36,7 +56,4 @@ for r in results:
 
 session.close()
 
-stmt = select(
-    Cookie.cookie_name,
-    (Cookie.quantity * Cookie.unit_cost).label("total_value")
-).where(Cookie.quantity > 50)
+
