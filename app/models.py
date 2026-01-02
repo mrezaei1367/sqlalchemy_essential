@@ -1,7 +1,7 @@
 # models.py
 from sqlalchemy import Column, Integer, String, Numeric, DateTime, ForeignKey
 from datetime import datetime
-from db import Base
+from app.db import Base
 
 class Cookie(Base):
     __tablename__ = 'cookies'
