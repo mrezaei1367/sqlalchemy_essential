@@ -26,7 +26,7 @@ with SessionLocal() as session:
     # ----------------------------
     # 4️⃣ Delete a line item by ID
     # ----------------------------
-    stmt = delete(LineItem).where(LineItem.line_items_id == 1)
+    stmt = delete(LineItem).where(LineItem.line_item_id == 1)
     session.execute(stmt)
 
     # ----------------------------

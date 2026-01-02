@@ -41,7 +41,7 @@ for order in session.query(Order).all():
 
 print("\n=== Line Items ===")
 for item in session.query(LineItem).all():
-    print(item.line_items_id, item.order_id, item.cookie_id, item.quantity, item.extended_cost)
+    print(item.line_item_id, item.order_id, item.cookie_id, item.quantity, item.extended_cost)
 
 # Optional: join tables to show order details
 print("\n=== Order Details ===")

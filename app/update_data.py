@@ -39,7 +39,7 @@ with SessionLocal() as session:
     # ----------------------------
     stmt = (
         update(LineItem)
-        .where(LineItem.line_items_id == 3)
+        .where(LineItem.line_item_id == 3)
         .values(quantity=5, extended_cost=5 * 0.45)  # assuming unit_cost = 0.45
     )
     session.execute(stmt)

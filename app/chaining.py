@@ -55,7 +55,7 @@ with SessionLocal() as session:
     stmt3 = (
         select(
             Cookie.cookie_name,
-            func.count(LineItem.line_items_id).label("times_ordered"),
+            func.count(LineItem.line_item_id).label("times_ordered"),
             func.sum(LineItem.extended_cost).label("total_revenue")
         )
         .join(LineItem, LineItem.cookie_id == Cookie.cookie_id)

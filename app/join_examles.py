@@ -24,7 +24,7 @@ with SessionLocal() as session:
     # ----------------------------
     stmt = (
         select(
-            LineItem.line_items_id,
+            LineItem.line_item_id,
             Cookie.cookie_name,
             LineItem.quantity,
             LineItem.extended_cost,
@@ -38,7 +38,7 @@ with SessionLocal() as session:
     result = session.execute(stmt)
     for row in result:
         print(
-            f"LineItem {row.line_items_id}: {row.quantity}x {row.cookie_name}, "
+            f"LineItem {row.line_item_id}: {row.quantity}x {row.cookie_name}, "
             f"cost {row.extended_cost}, Order {row.order_id}"
         )
 
